@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body style="background-color: #414141; color: #fff;">
+    <button>Click Me</button>
+</body>
+<script>
+    class React {
+        constructor() {
+            this.library = "React";
+            this.server = "http://localhost:200";
+
+            // requirement 
+            document.querySelector("button").addEventListener('click', this.handleClick.bind(this));
+        }
+        handleClick() {
+            console.log("BUTTON IS CLICKED");
+            console.log(this);
+        }
+    }
+    const app = new React();
+</script>
+</html>

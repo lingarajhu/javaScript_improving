@@ -1,0 +1,17 @@
+clientX - Returns the vertical coordinate of the mouse pointer realative to the current window when the mouse event was triggered 
+clientY - Returns the vertical coordinate of the mouse poiter relative to the current window when the mouse event was triggered
+clipvoardData - REturns an object containing the data affected by the clipboard operation
+code - Returns the code of the key that triggered the event 
+composed - Returns the code of the key that triggered the event 
+createEvent() - creates a new event
+ctrlKey - Returns whether the ctrl key was pressed when the mouse event was triggered
+currentTarget - Returns the element whose event listeners triggered the event
+dataTransfer - Returns an objrct contadining the data being dragged / dropped or inserted/deleted
+defaultPrevented - Returns whether or not the preventDefault() method was called for the event
+deltaX - Returns the horizontal scroll amount of a mouse wheel(x-axis)
+deltaY - Returns the scroll amount of a mouse wheel (y-axis)
+deltaMode - Returns a number that represents the unit of measurements for delta values 
+detail - Returns a number that indicates how many times the mouse was clicked
+elapsedTime - Returns the number of seconds an animation or transition has beeen running
+eventPhase - Return which phase of the event flow is currently being evaliated
+getTargetRanges() - Returns an array containing target ranges that will be affected by the insertion/deletion

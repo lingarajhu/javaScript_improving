@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API REQUEST</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: sans-serif;
+        }
+
+        #card {
+            height: 240px;
+            width: 400px;
+            background-color: rgba(190, 167, 140, 0.904);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            filter: blur();
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        #btn{
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130px;
+            height: 40px;
+            font-size: medium;
+            background: none;
+            border: 2px solid rgb(207, 185, 207);
+            border-radius: 30px;
+            color: rgb(207, 185, 207);
+            /* transition: all .4s; */
+            cursor: pointer;
+        }
+
+        img {
+            width: 80%;
+            height: 90%;
+            object-fit: cover;
+            object-position: center;
+            margin-left: 15px;
+            margin-top: 10px;
+            border-radius: 15px;
+        }
+
+        .details {
+            width: 60%;
+            height: 100%;
+            position: relative;
+        }
+
+        p {
+            /* position: absolute; */
+            margin-top: 10px;
+            line-height: 22px;
+        }
+    
+
+
+        
+    </style>
+</head>
+<body style="background-color: #414141; color: whitesmoke;">
+    0   - 	UNSENT	        -  Client has been created. open() not called yet.
+    1	-   OPENED         	-  open() has been called.
+    2	-   HEADERS_RECEIVED  -	send() has been called, and headers and status are available.
+    3	-   LOADING          -	Downloading; responseText holds partial data.
+    4	-   DONE	         - The operation is complete.
+    <button id="btn">Get details</button>
+    <div class="card" id="card"></div>
+</body>
+
+<script>
+    const url = 'https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function() {
+        console.log(xhr.readyState);
+        if(xhr.readyState === 4){
+            const data = JSON.parse(this.responseText);
+            console.log(this.responseText);
+            // console.log(data.followers)
+
+            function cardDetails() {
+                const btn = document.querySelector("#btn");
+                const card = document.querySelector('#card');
+
+                const div = document.createElement('div');
+                div.classList.add('img');
+
+                const div1 = document.createElement('div');
+                div1.classList.add('details');
+
+                const p = document.createElement('p')
+                p.classList.add('det')
+
+
+                btn.addEventListener('click', () => {
+                    div.innerHTML = `<img src="${data.avatar_url}" alt="">`
+                    card.appendChild(div);
+                    card.appendChild(div1);
+                    div1.appendChild(p);
+                    p.innerHTML = `<p class="str"> <strong>Name:</strong> ${data.name} <br>
+                                    <strong>Id:</strong> ${data.id}<br>
+                                    <strong>Total_repos:</strong> ${data.public_repos}<br>
+                                    <strong>Followers:</strong> ${data.followers} <br> 
+                                    <strong>Following:</strong> ${data.following}<br>
+                                    <strong>Bio:</strong> ${data.bio}
+                                    </p>`
+                })
+            }
+            cardDetails();
+        }
+    }
+    xhr.send();
+  
+</script>
+
+</html>
+
+<!-- 
+
+<strong class="str">Id: ${data.id}</strong><br>
+<strong class="str">Total_repos: ${data.public_repos}</strong><br>
+<strong class="str">Followers: ${data.followers}</strong><br>
+<strong class="str">Following: ${data.following}</strong><br>
+
+ -->
